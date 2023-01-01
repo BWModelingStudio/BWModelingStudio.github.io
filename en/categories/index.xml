@@ -1,0 +1,7 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Categories - Category - BW Blog</title>
+        <link>http://BWModelingStudio.github.io/en/categories/</link>
+        <description>Categories - Category - BW Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="http://BWModelingStudio.github.io/en/categories/" rel="self" type="application/rss+xml" /></channel>
+</rss>
