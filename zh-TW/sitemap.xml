@@ -2,30 +2,36 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://BWModelingStudio.github.io/zh-tw/categories/</loc><xhtml:link
+            <loc>http://BWModelingStudio.github.io/categories/</loc><lastmod>2023-01-18T04:03:25&#43;08:00</lastmod><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="http://BWModelingStudio.github.io/en/categories/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-tw"
-                    href="http://BWModelingStudio.github.io/zh-tw/categories/"
+                    href="http://BWModelingStudio.github.io/categories/"
                     /></url><url>
-            <loc>http://BWModelingStudio.github.io/zh-tw/tags/</loc><xhtml:link
+            <loc>http://BWModelingStudio.github.io/posts/</loc><lastmod>2023-01-18T04:03:25&#43;08:00</lastmod></url><url>
+            <loc>http://BWModelingStudio.github.io/tags/</loc><lastmod>2023-01-18T04:03:25&#43;08:00</lastmod><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="http://BWModelingStudio.github.io/en/tags/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-tw"
-                    href="http://BWModelingStudio.github.io/zh-tw/tags/"
+                    href="http://BWModelingStudio.github.io/tags/"
                     /></url><url>
-            <loc>http://BWModelingStudio.github.io/zh-tw/</loc><xhtml:link
+            <loc>http://BWModelingStudio.github.io/tags/%E4%BA%BA%E5%9E%8B/</loc><lastmod>2023-01-18T04:03:25&#43;08:00</lastmod></url><url>
+            <loc>http://BWModelingStudio.github.io/</loc><lastmod>2023-01-18T04:03:25&#43;08:00</lastmod><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="http://BWModelingStudio.github.io/en/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-tw"
-                    href="http://BWModelingStudio.github.io/zh-tw/"
-                    /></url></urlset>
+                    href="http://BWModelingStudio.github.io/"
+                    /></url><url>
+            <loc>http://BWModelingStudio.github.io/tags/%E6%A8%A1%E5%9E%8B%E7%B4%80%E9%8C%84/</loc><lastmod>2023-01-18T04:03:25&#43;08:00</lastmod></url><url>
+            <loc>http://BWModelingStudio.github.io/categories/%E6%A8%A1%E5%9E%8B%E7%B4%80%E9%8C%84/</loc><lastmod>2023-01-18T04:03:25&#43;08:00</lastmod></url><url>
+            <loc>http://BWModelingStudio.github.io/posts/models/1_nier_automata_2b/</loc><lastmod>2023-01-18T04:03:25&#43;08:00</lastmod></url><url>
+            <loc>http://BWModelingStudio.github.io/about/</loc><lastmod>2019-08-02T11:04:49&#43;08:00</lastmod></url></urlset>
