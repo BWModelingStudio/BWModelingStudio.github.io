@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>雜記 - 分類 - 黑白智庫</title>
+        <link>http://BWModelingStudio.github.io/categories/%E9%9B%9C%E8%A8%98/</link>
+        <description>雜記 - 分類 - 黑白智庫</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 07 Feb 2023 15:40:00 &#43;0800</lastBuildDate><atom:link href="http://BWModelingStudio.github.io/categories/%E9%9B%9C%E8%A8%98/" rel="self" type="application/rss+xml" /><item>
+    <title>蒙提霍爾問題-反直覺的博弈問題</title>
+    <link>http://BWModelingStudio.github.io/posts/trivia/monty_hall_problem/</link>
+    <pubDate>Tue, 07 Feb 2023 15:40:00 &#43;0800</pubDate>
+    <author>黑白大神</author>
+    <guid>http://BWModelingStudio.github.io/posts/trivia/monty_hall_problem/</guid>
+    <description><![CDATA[蒙提霍爾問題(Monty Hall problem) 前言 在韓劇逃兵追緝令第一季第四集中，整集都圍繞在一個有趣的經濟學問題上-蒙提霍爾問題。蒙提霍爾問題，又稱三門問題]]></description>
+</item>
+</channel>
+</rss>

@@ -3,13 +3,37 @@
         <title>所有文章 - 黑白智庫</title>
         <link>http://BWModelingStudio.github.io/posts/</link>
         <description>所有文章 | 黑白智庫</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 18 Jan 2023 04:03:25 &#43;0800</lastBuildDate><atom:link href="http://BWModelingStudio.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 30 Dec 2023 12:19:00 &#43;0800</lastBuildDate><atom:link href="http://BWModelingStudio.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>解決 Windows 上輸入指令出現「因為這個系統上已停用指令碼執行，所以無法載入...」的問題</title>
+    <link>http://BWModelingStudio.github.io/posts/technical_notes/2_set_executionpolicy_problem/</link>
+    <pubDate>Sat, 30 Dec 2023 12:19:00 &#43;0800</pubDate>
+    <author>黑白大神</author>
+    <guid>http://BWModelingStudio.github.io/posts/technical_notes/2_set_executionpolicy_problem/</guid>
+    <description><![CDATA[前言 最近剛換電腦，所以很多東西和環境都要重新設定，我灌好 VS Code 後並開始寫code，因為我習慣使用 yarn 指令集，所以馬上就下了一個 yarn 來給我剛剛 clone 好的]]></description>
+</item>
+<item>
+    <title>蒙提霍爾問題-反直覺的博弈問題</title>
+    <link>http://BWModelingStudio.github.io/posts/trivia/monty_hall_problem/</link>
+    <pubDate>Tue, 07 Feb 2023 15:40:00 &#43;0800</pubDate>
+    <author>黑白大神</author>
+    <guid>http://BWModelingStudio.github.io/posts/trivia/monty_hall_problem/</guid>
+    <description><![CDATA[蒙提霍爾問題(Monty Hall problem) 前言 在韓劇逃兵追緝令第一季第四集中，整集都圍繞在一個有趣的經濟學問題上-蒙提霍爾問題。蒙提霍爾問題，又稱三門問題]]></description>
+</item>
+<item>
     <title>模型紀錄-尼爾自動人型-2B</title>
     <link>http://BWModelingStudio.github.io/posts/models/1_nier_automata_2b/</link>
     <pubDate>Wed, 18 Jan 2023 04:03:25 &#43;0800</pubDate>
     <author>黑白大神</author>
     <guid>http://BWModelingStudio.github.io/posts/models/1_nier_automata_2b/</guid>
     <description><![CDATA[<p><strong>尼爾自動人型-2B</strong>製作過程</p>]]></description>
+</item>
+<item>
+    <title></title>
+    <link>http://BWModelingStudio.github.io/posts/models/2_matsuyoi_hime/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+    <author>黑白大神</author>
+    <guid>http://BWModelingStudio.github.io/posts/models/2_matsuyoi_hime/</guid>
+    <description><![CDATA[]]></description>
 </item>
 </channel>
 </rss>

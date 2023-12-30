@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>技術筆記 - 分類 - 黑白智庫</title>
+        <link>http://BWModelingStudio.github.io/categories/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98/</link>
+        <description>技術筆記 - 分類 - 黑白智庫</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-tw</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 30 Dec 2023 12:19:00 &#43;0800</lastBuildDate><atom:link href="http://BWModelingStudio.github.io/categories/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98/" rel="self" type="application/rss+xml" /><item>
+    <title>解決 Windows 上輸入指令出現「因為這個系統上已停用指令碼執行，所以無法載入...」的問題</title>
+    <link>http://BWModelingStudio.github.io/posts/technical_notes/2_set_executionpolicy_problem/</link>
+    <pubDate>Sat, 30 Dec 2023 12:19:00 &#43;0800</pubDate>
+    <author>黑白大神</author>
+    <guid>http://BWModelingStudio.github.io/posts/technical_notes/2_set_executionpolicy_problem/</guid>
+    <description><![CDATA[前言 最近剛換電腦，所以很多東西和環境都要重新設定，我灌好 VS Code 後並開始寫code，因為我習慣使用 yarn 指令集，所以馬上就下了一個 yarn 來給我剛剛 clone 好的]]></description>
+</item>
+</channel>
+</rss>
