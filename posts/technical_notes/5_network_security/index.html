@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>淺談網路安全-DDoS 攻擊、XSS攻擊、CSRF 攻擊 - 黑白智庫</title><meta name="Description" content="筆記DDoS 攻擊、XSS攻擊、CSRF 攻擊的原理以及防範方法"><meta property="og:title" content="淺談網路安全-DDoS 攻擊、XSS攻擊、CSRF 攻擊" />
+<meta property="og:description" content="筆記DDoS 攻擊、XSS攻擊、CSRF 攻擊的原理以及防範方法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://BWModelingStudio.github.io/posts/technical_notes/5_network_security/" />
+<meta property="og:image" content="http://BWModelingStudio.github.io/posts/technical_notes/5_network_security/featured-image.png"/>
+<meta property="article:published_time" content="2023-05-13T12:40:00+08:00" />
+<meta property="article:modified_time" content="2023-05-13T12:40:00+08:00" /><meta property="og:site_name" content="黑白智庫" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://BWModelingStudio.github.io/posts/technical_notes/5_network_security/featured-image.png"/>
+<meta name="twitter:title" content="淺談網路安全-DDoS 攻擊、XSS攻擊、CSRF 攻擊"/>
+<meta name="twitter:description" content="筆記DDoS 攻擊、XSS攻擊、CSRF 攻擊的原理以及防範方法"/>
+<meta name="application-name" content="黑白智庫">
+<meta name="apple-mobile-web-app-title" content="黑白智庫"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://BWModelingStudio.github.io/posts/technical_notes/5_network_security/" /><link rel="prev" href="http://BWModelingStudio.github.io/posts/trivia/1_monty_hall_problem/" /><link rel="next" href="http://BWModelingStudio.github.io/posts/technical_notes/3_javascript_interview_exam/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "淺談網路安全-DDoS 攻擊、XSS攻擊、CSRF 攻擊",
+        "inLanguage": "zh-tw",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/BWModelingStudio.github.io\/posts\/technical_notes\/5_network_security\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "http:\/\/BWModelingStudio.github.io\/posts\/technical_notes\/5_network_security\/featured-image.png",
+                            "width":  861 ,
+                            "height":  484 
+                        }],"genre": "posts","keywords": "技術筆記","wordcount":  5022 ,
+        "url": "http:\/\/BWModelingStudio.github.io\/posts\/technical_notes\/5_network_security\/","datePublished": "2023-05-13T12:40:00+08:00","dateModified": "2023-05-13T12:40:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "黑白大神"
+            },"description": "筆記DDoS 攻擊、XSS攻擊、CSRF 攻擊的原理以及防範方法"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="黑白智庫">黑白智庫</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 標籤 </a><a class="menu-item" href="/categories/"> 分類 </a><a class="menu-item" href="/about/"> 關於本站 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章標題或內容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="選擇語言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/technical_notes/5_network_security/" selected>繁體中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="黑白智庫">黑白智庫</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章標題或內容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">標籤</a><a class="menu-item" href="/categories/" title="">分類</a><a class="menu-item" href="/about/" title="">關於本站</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="選擇語言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/technical_notes/5_network_security/" selected>繁體中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目錄</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">淺談網路安全-DDoS 攻擊、XSS攻擊、CSRF 攻擊</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>黑白大神</a></span>&nbsp;<span class="post-category">收錄於 <a href="/categories/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>技術筆記</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-13">2023-05-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;約 5022 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;預計閱讀 11 分鐘&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/technical_notes/5_network_security/featured-image.png"
+        data-srcset="/posts/technical_notes/5_network_security/featured-image.png, /posts/technical_notes/5_network_security/featured-image.png 1.5x, /posts/technical_notes/5_network_security/featured-image.png 2x"
+        data-sizes="auto"
+        alt="/posts/technical_notes/5_network_security/featured-image.png"
+        title="筆記DDoS 攻擊、XSS攻擊、CSRF 攻擊的原理以及防範方法" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目錄</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#ddos-攻擊以及如何防範">DDoS 攻擊以及如何防範</a>
+      <ul>
+        <li><a href="#什麼是-ddos-攻擊">什麼是 DDoS 攻擊?</a></li>
+        <li><a href="#有防火牆為什麼還擋不了">有防火牆為什麼還擋不了?</a></li>
+        <li><a href="#如何防禦-ddos-攻擊">如何防禦 DDoS 攻擊?</a></li>
+      </ul>
+    </li>
+    <li><a href="#xss-攻擊以及如何防範">XSS 攻擊以及如何防範</a>
+      <ul>
+        <li><a href="#什麼是-xss">什麼是 XSS?</a></li>
+        <li><a href="#xss-攻擊的類型">XSS 攻擊的類型</a></li>
+        <li><a href="#如何防禦-xss">如何防禦 XSS?</a></li>
+      </ul>
+    </li>
+    <li><a href="#csrf-攻擊以及如何防範">CSRF 攻擊以及如何防範</a>
+      <ul>
+        <li><a href="#什麼是-csrf--攻擊">什麼是 CSRF  攻擊?</a></li>
+        <li><a href="#csrf-攻擊流程">CSRF 攻擊流程</a></li>
+        <li><a href="#csrf-防禦方法">CSRF 防禦方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#參考資料">參考資料</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>以前從後端轉到前端的時候，那時候我的主管跟我說你們前端要有被害妄想症，要去想我們會怎樣被攻擊以及去防範，因為前端基本上都是&hellip;&hellip;&hellip;被別人集火的目標，<del>說得好像不夠M就不是合當前端的樣子</del> 所以這裡我統整一下最基本的網路安全資運，也是順便給自己留個筆記方便自己日後溫習。</p>
+<hr>
+<hr>
+<hr>
+<h2 id="ddos-攻擊以及如何防範">DDoS 攻擊以及如何防範</h2>
+<h3 id="什麼是-ddos-攻擊">什麼是 DDoS 攻擊?</h3>
+<p>DDoS 攻擊是 <strong>「分散式阻斷服務攻擊」</strong>(Distributed Denial of Service) 的簡稱，是一種網路攻擊方式。這種攻擊方式是透過用大量的流量讓網站無法正常運作，當網站被 DDoS 攻擊，會擾亂正常使用者的請求，讓使用者無法載入網站，這是為什麼 ChatGPT 被 DDoS 時，大家會進不去網站的原因。</p>
+<p>打個比方，如果把一個網站想成一間店，通常一間店一次能接待好幾個客人。但如果突然有成千上萬的「假客人」一起湧進來，那麼店家就被塞爆，真正的客人就進不來。DDoS 正視這個概念。</p>
+<p>在 DDoS 攻擊中，攻擊者會協調多個攻擊源，讓許多裝置同時攻擊目標系統，很多時候，這些裝置是因為中了惡意軟體的毒，所以被操控。接著這些被操控的裝置，會同時向目標網站發送大量請求。</p>
+<p>這就像是突然有成千上萬的人，被操控來湧入你的店，一堆人擠著，真正的客人就被卡在外面進不來。而從網站的角度來看，網站因為應付不了這麼多請求，就會變得無法正常運作或完全崩潰。</p>
+<h3 id="有防火牆為什麼還擋不了">有防火牆為什麼還擋不了?</h3>
+<p>你可能會問，現在網站都有防火牆 (firewall)，那怎麼擋不了 DDoS 攻擊呢? 舉例來說，現在很多網站會透過一些服務，網路流量進到網站前，先阻擋異常的流量爆發。然後搭配防火牆，只讓合法的流量進入網站。</p>
+<p>然而，道高一尺，魔高一丈。就算有防火牆，攻擊者還是可能用一些方式設法繞過阻擋服務，並壓垮防火牆。</p>
+<p>此外 DDoS 阻擋服務有其容量限制，一般來說，如果發生過超過 2 Tbps 的攻擊，而且攻擊規模不斷增加。巨大的攻擊仍可壓垮阻擋服務和防火牆。</p>
+<p>換句話說，當攻擊者用更大的流量和更快的速度進行攻擊。網站的防火牆或中間的路由器，因為有帶寬限制，都仍有可能會被淹沒。在這種情況下，網站仍會無法對合法請求做出回應。</p>
+<h3 id="如何防禦-ddos-攻擊">如何防禦 DDoS 攻擊?</h3>
+<p>要防禦 DDoS 攻擊，可以想像成要保護你開的店免受一群不請自來的客人湧入。這需要幾個策略：</p>
+<ol>
+<li>
+<p><strong>增加網站可承受的容量</strong><br>
+如果把 DDoS 想成一堆不速之客要擠進你的店，想要確保不被擠爆，最直觀的想法就是，把店門做得更大、店的坪數增加，讓更多人進出。增加網站的帶寬就是讓它能處理更多流量，即使被 DDoS 攻擊，也不那麼容易就被擠爆。</p>
+<p>當然假如你是經營店家的人，可能會覺得這樣很虧，畢竟多數時候店不用到那麼大的門、那麼大的坪數，假如只是用來承接無預警的不速之客，這樣不是很浪費嗎? 沒錯，在面對 DDoS 攻擊時，傳統購買額外的硬體來增加容量，以處理攻擊導致的大量流量，是相對不推薦的做法，因為要額外的費用來應對攻擊，而這些額外的容量在攻擊之外並不常用。</p>
+<p>實務上比較常見的是用可擴展的資源，例如現在許多雲端廠商都有提供可擴展的資源，是按需求付費。所以平常用不到不用付費，當被 DDoS 攻擊時，可以短暫用來承接突如其來的高流量。</p>
+<p>因此，更好的做法是採用高容量的解決方案。 基於雲端的 DDoS 緩解方案，擁有可擴展的資源，甚至可以吸收最大規模的攻擊，使您的組織不受損害。</p>
+</li>
+<li>
+<p><strong>反向代理</strong><br>
+除了增加容量外，擋下不速之客也是常見的 DDoS 防禦手段。常見的做法是使用反向代理 (reverse proxy)，這概念有點是個保護屏障，攻擊者會先經過反向代理，所以無法直接找到伺服器位置。這樣一來，攻擊者只能攻擊這個反向代理，而不是我們的伺服器。</p>
+<p>在反向代理當中，我們也可以進一步去實作限流，來限制伺服器在一段時間內可以接收的請求數量，以幫助防禦 DDoS 攻擊。 然而，僅依靠速率限制可能會導致在面對合法流量時效能下降，並且無法應對更複雜的攻擊方式，所以當純的反向代理與限流一般不太夠。</p>
+<p>現在雲端廠商多半有機器學習的解決方案，會去對流量做分析，這概念就像有個智慧守衛，可以辨認哪些訪客是真的，哪些是假的。這守衛會持續監控來訪者，如果發現異常（比如說，突然有很多人同時來敲門想進來），就會採取行動去把假的客人給擋在門外。</p>
+</li>
+<li>
+<p><strong>CDN (內容傳遞網路)</strong><br>
+假如網站是以靜態資源為主，有個既能協助增加帶寬，又能作為反向代理的存在，就是 CDN (內容傳遞網路)，這也是常見的阻擋 DDoS 的節點。CDN 是分布全球的代理伺服器網路，它可以在離使用者近的地方儲存網站的內容，這樣可以讓網站運作更快。而在被 DDoS 攻擊時，攻擊者訪問到 CDN，只要 CDN 本身帶寬更大，就能承接下來，同時原本的伺服器有 CDN 在前面處理請求，也能免於直接被攻擊。</p>
+</li>
+<li>
+<p><strong>其他防禦手段</strong><br>
+除了以上三個比較常見的防禦手段外，還有其他的 DDoS 防禦方法。舉例來說，如果我們想保護整個網路，那可以用 BGP (Border Gateway Protocol 邊界閘道器協定)，將惡意流量重新導向到可以過濾掉它的特殊伺服器。</p>
+<p>或是可以在使用強密碼和啟用 2FA (Two-Factor Authentication 雙重要素驗證) 當作額外的安全措施，以防止未經授權的流量進到你的網站中。</p>
+<p>當然，沒有任何防禦措施是百分之百安全的，而且攻擊者可能會根據你的防禦手段來調整他們的攻擊。但以上的做法，可以有效減緩攻擊。當然，時時保持警覺，平常要做應對 DDoS 攻擊的演習，也是必要的，這樣能讓真的攻擊發生時，能有效迅速反應。</p>
+</li>
+</ol>
+<hr>
+<hr>
+<hr>
+<h2 id="xss-攻擊以及如何防範">XSS 攻擊以及如何防範</h2>
+<h3 id="什麼是-xss">什麼是 XSS?</h3>
+<p>XSS 攻擊是指當某個惡意用戶，<strong>從客戶端注入攻擊腳本</strong>來達到某種目的（例如：竊取 Cookie、Session、密碼等)，導致其他用戶受到波及。之所以會說是跨域 (cross-site)，是因為這種攻擊方式，<strong>通常是從可信的來源發出，因此能夠繞過同源政策</strong> (same origin policy)。舉例來說，某個用戶以合法身份進到某個網站，這時因為他是合法身份，網站認為該用戶輸入的東西是可信任的，所以當該用戶注入攻擊腳本時，網站也會認為該腳本是可信任的。</p>
+<p>最常見的 XSS 攻擊是把 JavaScript 的腳本注入到輸入框中。例如在某個論壇網站中，惡意用戶把攻擊腳本注入到輸入框，然後變成某篇論壇貼文。這時當其他用戶進到論壇時，因為瀏覽了那篇帶有惡意腳本的貼文，所以被攻擊。</p>
+<p>用戶可以輸入惡意的 Javascript 語法，讓系統出現問題，有興趣的可以透過這個網站來試試看。</p>
+<p>因為 JavaScript 幾乎可以做到任何事，所以 XSS 的攻擊能做到的事情也是五花八門。舉例來說，竊取別的用戶的 cookie，然後透過拿到的 cookie 來發送請求；或者是竄改網頁內容。下面分享一個早些年直播平台 Twitch 因為防禦做得不夠完善，被惡搞的例子。這個例子就是透過 XSS 達成的。</p>
+<hr>
+<h3 id="xss-攻擊的類型">XSS 攻擊的類型</h3>
+<h4 id="stored-xss">Stored XSS</h4>
+<p>被保存在資料庫中的 Javascript 引起的攻擊稱為 Stored XSS，最常見的就是文章、留言等，因為用戶可以任意輸入內容，若沒有檢查，則 <code>&lt;script&gt;</code> 等標籤就會被視為正常的 HTML 做執行。</p>
+<h4 id="reflected-xss">Reflected XSS</h4>
+<p>此類型不會被存在資料庫中，主要透過用戶發出惡意的請求，倘若後端沒有過濾而直接將結果回傳前端的話，就有可能執行到惡意的程式碼，舉例來說：
+<figure><a class="lightgallery" href="/posts/technical_notes/5_network_security/1.png" title="Reflected XSS" data-thumbnail="/posts/technical_notes/5_network_security/1.png" data-sub-html="<h2>Reflected XSS</h2><p>Reflected XSS</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/technical_notes/5_network_security/1.png"
+            data-srcset="/posts/technical_notes/5_network_security/1.png, /posts/technical_notes/5_network_security/1.png 1.5x, /posts/technical_notes/5_network_security/1.png 2x"
+            data-sizes="auto"
+            alt="/posts/technical_notes/5_network_security/1.png" width="1490" height="518" />
+    </a><figcaption class="image-caption">Reflected XSS</figcaption>
+    </figure></p>
+<p>倘若用戶填完名字後，顯示的程式碼如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span> Hi, <span class="cp">&lt;?=$_GET[&#39;name&#39;] ?&gt;</span> <span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+</code></pre></div><hr>
+<p>則很有可能被用戶惡意填寫為：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">https://websiteA/welcome?name=<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="mi">123</span><span class="p">)&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><hr>
+<p>此種手法通常都用於釣魚、社交工程等方式誘騙用戶點入連結。</p>
+<h4 id="dom-based-xss">DOM-Based XSS</h4>
+<p>DOM 全名為 Document Object Model，它可以利用 Javascript 動態產生完整的網頁，不用透過後端，因此 DOM-Based XSS 是指網頁上的 Javascript 在執行過程中，沒有檢查輸入資料，使得操作 DOM 的過程中帶入了惡意程式碼。
+<figure><a class="lightgallery" href="/posts/technical_notes/5_network_security/2.png" title="DOM-Based XSS" data-thumbnail="/posts/technical_notes/5_network_security/2.png" data-sub-html="<h2>DOM-Based XSS</h2><p>DOM-Based XSS</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/technical_notes/5_network_security/2.png"
+            data-srcset="/posts/technical_notes/5_network_security/2.png, /posts/technical_notes/5_network_security/2.png 1.5x, /posts/technical_notes/5_network_security/2.png 2x"
+            data-sizes="auto"
+            alt="/posts/technical_notes/5_network_security/2.png" width="1476" height="486" />
+    </a><figcaption class="image-caption">DOM-Based XSS</figcaption>
+    </figure></p>
+<p>在同一個網址上，透過 DOM 的方式直接顯示在前端頁面</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="kd">var</span> <span class="nx">hello</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;name&#34;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;show&#34;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Hi, <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;show&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;name&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&#34;hello();&#34;</span><span class="p">&gt;</span>Go<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></div><hr>
+<p>因此只要將輸入的內容寫為</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">onerror</span><span class="o">=</span><span class="s">&#34;alert(123);&#34;</span> <span class="p">/&gt;</span>
+</code></pre></div><hr>
+<p>則會因為讀取不出圖片而產生錯誤，觸發 onerror ，並執行 alert(123) 。</p>
+<p>此類型的攻擊，或許沒辦法直接讓用戶輸入語法，但可以搭配 Stored XSS 和 Reflected XSS 製造出內容，再藉由 Javascript 動態產生有效的 DOM 物件來執行惡意程式碼。</p>
+<h3 id="如何防禦-xss">如何防禦 XSS?</h3>
+<ol>
+<li>
+<p>DOM-Based 防範 - 檢查輸入欄位。此攻擊需要從前端去防範，任何的輸入欄位，例如留言欄位、檔案上傳欄位、表單的欄位等，都要有跳脫的機制，讓腳本被轉換成字符串。舉例來說，如果攻擊者輸入 <code>&lt;script&gt;</code>alert(1)<code>&lt;/script&gt;</code> ，我們把 &lt; 轉成 &amp;lt ，在畫面上依然是呈現 &lt; 但是對程式來說，它不會被當成 HTML 標籤來解析。</p>
+</li>
+<li>
+<p>確保來自使用者的腳本不會被執行。透過 CSP (content security policy) 來設定有哪些網域 (domains) 來的腳本該被瀏覽器認為是該被執行的，然後瀏覽器只執行那些該被執行的腳本。舉例來說，如果設定只有來自與網站同一個網域的腳本可被執行，那麼其他由惡意攻擊者注入的腳本，就會被認定成不該執行的，就不會被執行。</p>
+</li>
+<li>
+<p>Stored、Reflected 防範。這兩種都必須由後端進行防範，任何允許用戶輸入的內容都要檢查，刪除相關的關鍵字，像是 <code>&lt;script&gt;</code> 、 onerror 等指令。</p>
+</li>
+</ol>
+<hr>
+<hr>
+<hr>
+<h2 id="csrf-攻擊以及如何防範">CSRF 攻擊以及如何防範</h2>
+<h3 id="什麼是-csrf--攻擊">什麼是 CSRF  攻擊?</h3>
+<p>CSRF 是指<strong>跨站的請求偽造</strong>，這種攻擊方法會強迫使用者在他們已經驗證身份的網站中，執行某些惡意的偽造操作，因為已經驗證過該使用者，所以網站就會以操作來自該使用者，因此接受了該操作。舉例來說，某個使用者登入銀行帳戶後，去逛別的網站，但不小心點開惡意網站，該惡意網站中的程式碼用這名使用者的名義，進行未經同意的轉帳操作。</p>
+<p>CSRF 之所以成立，是因為使用者的身份已經先被驗證過。如果要白話一點理解，就像是別人偷拿你的會員點數卡去買東西。但因為店家認卡，所以當看到小偷拿著你的卡，就相信小偷是你本人，於是接受該小偷使用你的點數進行消費。</p>
+<h3 id="csrf-攻擊流程">CSRF 攻擊流程</h3>
+<ol>
+<li>使用者成功登入 A 銀行網站的帳戶，並且代表使用者身份的 cookie 在本地保存下來，所以下次再來 A 銀行網站時，不用重新登入</li>
+<li>由於使用者沒有登出 A 銀行網站的帳戶，在瀏覽 B 惡意網站時，B 網站有個被設為透明的圖片，因為是透明的，所以使用者在畫面上看不到，然而該圖片包含一段惡意程式碼，程式碼如下。</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">// 備註：CSRF 攻擊手法有很多，此程式碼例子是一種最基本的攻擊方法之一
+<span class="p">&lt;</span><span class="nt">img</span>
+  <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://a-bank.com/transfer.do?acct=BadGuy&amp;amount=100000 HTTP/1.1&#34;</span>
+  <span class="na">width</span><span class="o">=</span><span class="s">&#34;0&#34;</span>
+  <span class="na">height</span><span class="o">=</span><span class="s">&#34;0&#34;</span>
+<span class="p">/&gt;</span>
+</code></pre></div><hr>
+<p>使用者雖然將看不到此圖片， 但是，瀏覽器仍會向 <a href="http://a-bank.com/">http://a-bank.com/</a> 提交請求，同時此請求是帶有使用者的 cookie，所以 A 銀行可以辨識使用者身份，此惡意攻擊執行成功。
+<figure><a class="lightgallery" href="/posts/technical_notes/5_network_security/3.png" title="CSRF" data-thumbnail="/posts/technical_notes/5_network_security/3.png" data-sub-html="<h2>CSRF</h2><p>CSRF</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/technical_notes/5_network_security/3.png"
+            data-srcset="/posts/technical_notes/5_network_security/3.png, /posts/technical_notes/5_network_security/3.png 1.5x, /posts/technical_notes/5_network_security/3.png 2x"
+            data-sizes="auto"
+            alt="/posts/technical_notes/5_network_security/3.png" width="1352" height="948" />
+    </a><figcaption class="image-caption">CSRF</figcaption>
+    </figure></p>
+<h3 id="csrf-防禦方法">CSRF 防禦方法</h3>
+<h4 id="加上驗證">加上驗證</h4>
+<p>在針對比較危險的操作，可以再增加一些驗證，像是圖形驗證碼、簡訊驗證碼等。</p>
+<h4 id="不要用-get-請求來做關鍵操作">不要用 <code>GET</code> 請求來做關鍵操作</h4>
+<p>上面的透過把請求帶到圖片的例子，是很基本且常見的攻擊方式。這種攻擊之所以能很輕鬆做到，是因為使用了<code>GET</code> 請求進行操作。因此如果要避免 CSRF，最基本地做法，是不要用 <code>GET</code> 請求來做關鍵操作，建議用 <code>POST</code> 請求。</p>
+<p>當然這不是說用 <code>POST</code> 請求就絕對安全，只是若使用 <code>POST</code> 請求，會需要有使用者的提交動作才能觸發。許多釣魚網站，都會引誘使用去點擊某些按鈕，正是因為要有點擊這個提交動作，才能觸發 CSRF 攻擊。雖然仍有可能被攻擊到，但起碼不會像用 <code>GET</code> 請求，使用者可能在完全不知情下，進到網站就馬上被攻擊。</p>
+<h4 id="檢查-referrer">檢查 Referrer</h4>
+<p>要能夠避免被跨站偽造請求，一個方式是先辨識發出請求的，是在哪個網站。即使有 cookie 等驗證使用者的機制，假如能夠辨別出不是來自於原本的網站，就能把偽造的請求過濾掉。在 HTTP 的標頭中有 Referrer 的字段，我們可以檢查這個字段，來確保請求不是來自於其他網站。</p>
+<p>然而這做法也不是沒問題，因為這個字段的值，是由瀏覽器所提供，換句話說你的網站安全性，會依賴於瀏覽器這個第三方角色，假如某個瀏覽器的安全性做得不夠好，讓駭客能篡改 Referrer 的值，那仍有可能被攻擊成功。因此我們需要更安全的防禦方法。</p>
+<h4 id="csrf-token">CSRF token</h4>
+<p>用於認證身份的 cookie，因為會在每次發送請求時，被瀏覽器自動夾帶在請求中，這讓惡意網站也拿得到 cookie，所以可以拿來做偽造的請求。要避免被拿 cookie 來偽造請求，我們可以用 CSRF token。CSRF token 的做法，是讓網站用其他方式驗證使用者的身份，而不是透過 cookie。</p>
+<p>CSRF token 需要由伺服器端生成，可以為每個請求或是每個 session 生成一次，但每個請求都生成會更為安全。接著，這個 token 會被傳送到客戶端，客戶端可以在表單中用隱藏字段儲存起來，客戶端當客戶端發出請求時，一起提交回伺服器端，或是作為 header 一部分傳回伺服器端。伺服器端需要在此用戶的請求紀錄或 session 中，找到該 token，如果客戶端提供的 token 與其不同，則拒絕請求。</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;/transfer.do&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;post&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;hidden&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;CSRFToken&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;123token123&#34;</span><span class="p">&gt;</span>
+[...]
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</code></pre></div><hr>
+<h4 id="瀏覽器本身防護---samesite-cookies">瀏覽器本身防護 - SameSite cookies</h4>
+<p>由於許多 CSRF 攻擊是因為 cookie 被惡意網站使用，拿來偽造請求。假如要避免這發生，其實可以透過限定 cookie 只能被自己的網站使用。要如何限定 cookie 只能被自己網站用呢? 我們可以透過 SameSite cookies 來做到。</p>
+<p>Google 在 Chrome 51 版之後加入的 SameSite Cookie 的功能，他只要將原本設置 Cookie 的方式後面加上 SameSite 即可。</p>
+<p>SameSite cookies 是 HTTP 回應標頭中的 <code>Set-Cookie</code> 的屬性之一，此屬性的可能值為 Lax、Strict 或 None。Lax 或 Strict 值可以阻擋第三方網站攜帶 cookie 來防禦 CSRF 攻擊。最安全的做法是設定 Strict，Strict 會限制其他 Domain 來的任何請求都不帶上 Cookie，這樣一來 cookie 就只能自己的網站中使用，也就不用擔心被偽造請求。而 Lax 則是限制 <code>POST、</code> <code>DELETE</code>、<code>PUT</code> 都不帶上 Cookie，<code>GET</code> 則會帶上 Cookie。</p>
+<pre><code>Set-Cookie: JSESSIONID=xxxxx; SameSite=Strict
+Set-Cookie: JSESSIONID=xxxxx; SameSite=Lax
+</code></pre><h2 id="參考資料">參考資料</h2>
+<p><a href="https://www.explainthis.io/zh-hant/swe/what-is-ddos" title="DDoS" target="_blank" rel="noopener noreffer ">DDoS</a>
+<a href="https://www.explainthis.io/zh-hant/swe/what-is-xss" title="XSS" target="_blank" rel="noopener noreffer ">XSS</a>
+<a href="https://www.explainthis.io/zh-hant/swe/what-is-csrf" title="CSRF" target="_blank" rel="noopener noreffer ">CSRF</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新於 2023-05-13</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://BWModelingStudio.github.io/posts/technical_notes/5_network_security/" data-title="淺談網路安全-DDoS 攻擊、XSS攻擊、CSRF 攻擊" data-hashtags="技術筆記"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://BWModelingStudio.github.io/posts/technical_notes/5_network_security/" data-hashtag="技術筆記"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://BWModelingStudio.github.io/posts/technical_notes/5_network_security/" data-title="淺談網路安全-DDoS 攻擊、XSS攻擊、CSRF 攻擊"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://BWModelingStudio.github.io/posts/technical_notes/5_network_security/" data-title="淺談網路安全-DDoS 攻擊、XSS攻擊、CSRF 攻擊"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://BWModelingStudio.github.io/posts/technical_notes/5_network_security/" data-title="淺談網路安全-DDoS 攻擊、XSS攻擊、CSRF 攻擊"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98/">技術筆記</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主頁</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/trivia/1_monty_hall_problem/" class="prev" rel="prev" title="蒙提霍爾問題-反直覺的博弈問題"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>蒙提霍爾問題-反直覺的博弈問題</a>
+            <a href="/posts/technical_notes/3_javascript_interview_exam/" class="next" rel="next" title="面試常見問題筆記-Javascript 篇">面試常見問題筆記-Javascript 篇<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.2">Hugo</a> 強力驅動 | 主題 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">黑白大神</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到頂部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看評論">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"複製到剪貼板","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-tw","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"沒有找到結果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

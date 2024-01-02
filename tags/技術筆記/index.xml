@@ -27,5 +27,13 @@
     <guid>http://BWModelingStudio.github.io/posts/technical_notes/3_javascript_interview_exam/</guid>
     <description><![CDATA[前言 每次換工作時，到新公司都會有筆試這一關，然而跑了很多家公司後發現其實題目重複性很高，然後網路上也有很多題庫可以先練習，所以我這邊紀錄一下]]></description>
 </item>
+<item>
+    <title>淺談網路安全-DDoS 攻擊、XSS攻擊、CSRF 攻擊</title>
+    <link>http://BWModelingStudio.github.io/posts/technical_notes/5_network_security/</link>
+    <pubDate>Sat, 13 May 2023 12:40:00 &#43;0800</pubDate>
+    <author>黑白大神</author>
+    <guid>http://BWModelingStudio.github.io/posts/technical_notes/5_network_security/</guid>
+    <description><![CDATA[前言 以前從後端轉到前端的時候，那時候我的主管跟我說你們前端要有被害妄想症，要去想我們會怎樣被攻擊以及去防範，因為前端基本上都是&hellip]]></description>
+</item>
 </channel>
 </rss>
