@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>面試常見問題筆記- Vue 篇 - 黑白智庫</title><meta name="Description" content="紀錄面試常見的Vue 的問題"><meta property="og:title" content="面試常見問題筆記- Vue 篇" />
+<meta property="og:description" content="紀錄面試常見的Vue 的問題" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://BWModelingStudio.github.io/posts/technical_notes/4_vue_interview_exam/" />
+<meta property="og:image" content="http://BWModelingStudio.github.io/posts/technical_notes/4_vue_interview_exam/featured-image.png"/>
+<meta property="article:published_time" content="2023-12-07T12:40:00+08:00" />
+<meta property="article:modified_time" content="2023-12-07T12:40:00+08:00" /><meta property="og:site_name" content="黑白智庫" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://BWModelingStudio.github.io/posts/technical_notes/4_vue_interview_exam/featured-image.png"/>
+<meta name="twitter:title" content="面試常見問題筆記- Vue 篇"/>
+<meta name="twitter:description" content="紀錄面試常見的Vue 的問題"/>
+<meta name="application-name" content="黑白智庫">
+<meta name="apple-mobile-web-app-title" content="黑白智庫"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://BWModelingStudio.github.io/posts/technical_notes/4_vue_interview_exam/" /><link rel="prev" href="http://BWModelingStudio.github.io/posts/technical_notes/3_javascript_interview_exam/" /><link rel="next" href="http://BWModelingStudio.github.io/posts/technical_notes/2_set_executionpolicy_problem/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "面試常見問題筆記- Vue 篇",
+        "inLanguage": "zh-tw",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/BWModelingStudio.github.io\/posts\/technical_notes\/4_vue_interview_exam\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "http:\/\/BWModelingStudio.github.io\/posts\/technical_notes\/4_vue_interview_exam\/featured-image.png",
+                            "width":  290 ,
+                            "height":  174 
+                        }],"genre": "posts","keywords": "技術筆記, 面試","wordcount":  4185 ,
+        "url": "http:\/\/BWModelingStudio.github.io\/posts\/technical_notes\/4_vue_interview_exam\/","datePublished": "2023-12-07T12:40:00+08:00","dateModified": "2023-12-07T12:40:00+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "黑白大神"
+            },"description": "紀錄面試常見的Vue 的問題"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="黑白智庫">黑白智庫</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 標籤 </a><a class="menu-item" href="/categories/"> 分類 </a><a class="menu-item" href="/about/"> 關於本站 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章標題或內容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="選擇語言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/technical_notes/4_vue_interview_exam/" selected>繁體中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="黑白智庫">黑白智庫</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章標題或內容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">標籤</a><a class="menu-item" href="/categories/" title="">分類</a><a class="menu-item" href="/about/" title="">關於本站</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切換主題">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="選擇語言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/technical_notes/4_vue_interview_exam/" selected>繁體中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目錄</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">面試常見問題筆記- Vue 篇</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>黑白大神</a></span>&nbsp;<span class="post-category">收錄於 <a href="/categories/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>技術筆記</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-07">2023-12-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;約 4185 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;預計閱讀 9 分鐘&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/technical_notes/4_vue_interview_exam/featured-image.png"
+        data-srcset="/posts/technical_notes/4_vue_interview_exam/featured-image.png, /posts/technical_notes/4_vue_interview_exam/featured-image.png 1.5x, /posts/technical_notes/4_vue_interview_exam/featured-image.png 2x"
+        data-sizes="auto"
+        alt="/posts/technical_notes/4_vue_interview_exam/featured-image.png"
+        title="紀錄面試常見的Vue 的問題" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目錄</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#題目和解答">題目和解答</a>
+      <ul>
+        <li><a href="#v-show和v-if有什麼差別-使用場景分別是什麼">v-show和v-if有什麼差別？ 使用場景分別是什麼？</a></li>
+        <li><a href="#v-if和v-for的優先順序是什麼">v-if和v-for的優先順序是什麼？</a></li>
+        <li><a href="#請描述下你對vue生命週期的理解-在created和mounted這兩個生命週期中請求資料有什麼差別呢">請描述下你對vue生命週期的理解？ 在created和mounted這兩個生命週期中請求資料有什麼差別呢？</a></li>
+        <li><a href="#vue元件之間的通訊方式都有哪些">Vue元件之間的通訊方式都有哪些？</a></li>
+        <li><a href="#vue中的nexttick有什麼作用">Vue中的$nextTick有什麼作用？</a></li>
+        <li><a href="#computed-和-watch-的差異和使用時機">Computed 和 Watch 的差異和使用時機?</a></li>
+        <li><a href="#說說你對vue的mixin的理解有什麼應用場景">說說你對vue的mixin的理解，有什麼應用場景？</a></li>
+        <li><a href="#vue30裡為什麼要用-proxy-api-取代-defineproperty-api-">Vue3.0裡為什麼要用 Proxy API 取代 defineProperty API ？</a></li>
+        <li><a href="#vue30-所採用的-composition-api-與-vue2x-所使用的-options-api-有何不同">Vue3.0 所採用的 Composition Api 與 Vue2.x 所使用的 Options Api 有何不同？</a></li>
+      </ul>
+    </li>
+    <li><a href="#參考資料">參考資料</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>每次換工作時，到新公司都會有筆試這一關，然而跑了很多家公司後發現其實題目重複性很高，然後網路上也有很多題庫可以先練習，所以我這邊紀錄一下一些比較常見的筆試題目，以備後續不時之需，這篇是以 Vue 的題目為主。</p>
+<h2 id="題目和解答">題目和解答</h2>
+<h3 id="v-show和v-if有什麼差別-使用場景分別是什麼">v-show和v-if有什麼差別？ 使用場景分別是什麼？</h3>
+<blockquote>
+<p>控製手段：v-show隱藏則是為該元素添加css&ndash;display:none，dom元素依舊還在。 v-if顯示隱藏是將dom元素整個新增或刪除
+效能消耗：v-if有較高的切換消耗；v-show有較高的初始渲染消耗；</p>
+<ul>
+<li>v-show 由false變成true的時候不會觸發組件的生命週期</li>
+<li>v-if由false變成true的時候，觸發元件的beforeCreate、create、beforeMount、mounted鉤子，由true變成false的時候觸發元件的beforeDestory、destoryed方法\</li>
+</ul>
+</blockquote>
+<hr>
+<hr>
+<hr>
+<h3 id="v-if和v-for的優先順序是什麼">v-if和v-for的優先順序是什麼？</h3>
+<blockquote>
+<p>v-for 優先權是比 v-if 高<br>
+<strong>注意事項:</strong>\</p>
+<blockquote>
+<p>永遠不要把 v-if 和 v-for 同時用在同一個元素上，帶來效能方面的浪費（每次渲染都會先循環再進行條件判斷）<br>
+如果避免出現這種情況，則在外層嵌套template（頁面渲染不產生dom節點），在這一層進行v-if判斷，然後在內部進行v-for循環<br>
+如果條件出現在循環內部，可透過計算屬性computed提前過濾掉那些不需要顯示的項</p>
+</blockquote>
+</blockquote>
+<hr>
+<hr>
+<hr>
+<h3 id="請描述下你對vue生命週期的理解-在created和mounted這兩個生命週期中請求資料有什麼差別呢">請描述下你對vue生命週期的理解？ 在created和mounted這兩個生命週期中請求資料有什麼差別呢？</h3>
+<blockquote>
+<p>Vue生命週期總共可以分為8個階段：創建前後, 載入前後,更新前後,銷毀前銷毀後，以及一些特殊場景的生命週期</p>
+<table>
+<thead>
+<tr>
+<th>生命週期</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>beforeCreate</td>
+<td>組件實例被創建之初</td>
+</tr>
+<tr>
+<td>created</td>
+<td>組件實例已完全創建</td>
+</tr>
+<tr>
+<td>beforeMount</td>
+<td>組件掛載之前</td>
+</tr>
+<tr>
+<td>mounted</td>
+<td>元件掛載到實例上去之後</td>
+</tr>
+<tr>
+<td>beforeUpdate</td>
+<td>元件資料發生變化，更新前</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>元件資料更新之後</td>
+</tr>
+<tr>
+<td>beforeDestroy</td>
+<td>元件實例銷毀之前</td>
+</tr>
+<tr>
+<td>destroyed</td>
+<td>元件實例銷毀之後</td>
+</tr>
+</tbody>
+</table>
+<p><strong>使用场景分析</strong></p>
+<table>
+<thead>
+<tr>
+<th>生命週期</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>beforeCreate</td>
+<td>執行時元件實例尚未創建，通常用於插件開發中執行一些初始化任務</td>
+</tr>
+<tr>
+<td>created</td>
+<td>組件初始化完畢，各種資料可以使用，常用於非同步資料獲取</td>
+</tr>
+<tr>
+<td>beforeMount</td>
+<td>未執行渲染、更新，dom未創建</td>
+</tr>
+<tr>
+<td>mounted</td>
+<td>初始化結束，dom已創建，可用於取得存取資料和dom元素</td>
+</tr>
+<tr>
+<td>beforeUpdate</td>
+<td>更新前，可用於取得更新前各種狀態</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>更新後，所有狀態已是最新</td>
+</tr>
+<tr>
+<td>beforeDestroy</td>
+<td>銷毀前，可用於一些定時器或訂閱的取消</td>
+</tr>
+<tr>
+<td>destroyed</td>
+<td>組件已銷毀，作用同上</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<hr>
+<hr>
+<hr>
+<h3 id="vue元件之間的通訊方式都有哪些">Vue元件之間的通訊方式都有哪些？</h3>
+<blockquote>
+<p><strong>組件間通訊的分類可以分成以下</strong></p>
+<ul>
+<li>父子組件之間的通信</li>
+<li>非關係組件間之間的通信</li>
+</ul>
+<p><strong>vue中8種常規的通訊方案</strong></p>
+<ol>
+<li>透過 props 傳遞 (父子)</li>
+<li>透過 $emit 觸發自訂事件 (父子)</li>
+<li>使用 ref (父子)</li>
+<li>EventBus (非關係組件間之間的通信)</li>
+<li>$parent 或$root (非關係組件間之間的通信)</li>
+<li>attrs 與 listeners (非關係組件間之間的通信)</li>
+<li>Provide 與 Inject (非關係組件間之間的通信)</li>
+<li>Vuex (非關係組件間之間的通信)</li>
+</ol>
+</blockquote>
+<hr>
+<hr>
+<hr>
+<h3 id="vue中的nexttick有什麼作用">Vue中的$nextTick有什麼作用？</h3>
+<blockquote>
+<p>我們可以理解成，Vue 在更新 DOM 時是非同步執行的。 當資料發生變化，Vue將開啟一個非同步更新佇列，視圖需要在等佇列中所有資料變更完成之後，再統一進行更新<br>
+舉例一下</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span> {{ message }} <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>建構一個vue實例</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+ <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+ <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+   <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;原始值&#39;</span>
+ <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div><p>修改message</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s1">&#39;修改后的值1&#39;</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s1">&#39;修改后的值2&#39;</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s1">&#39;修改后的值3&#39;</span>
+</code></pre></div><p>這時候想取得頁面最新的DOM節點，卻發現取得到的是舊值</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">vm</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">textContent</span><span class="p">)</span> <span class="c1">// 原始值
+</span></code></pre></div><p>這是因為message資料在發現變化的時候，vue並不會立刻去更新Dom，而是將修改資料的操作放在了一個非同步操作佇列中<br>
+如果我們一直修改相同數據，非同步操作隊列還會進行去重<br>
+等待同一事件循環中的所有資料變更完成之後，會將佇列中的事件拿來處理，進行DOM的更新\</p>
+<p><strong>為什麼要有nexttick</strong><br>
+舉例一下</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="p">{{</span><span class="nx">num</span><span class="p">}}</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="mi">100000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+   <span class="nx">num</span> <span class="o">=</span> <span class="nx">i</span>
+<span class="p">}</span>
+</code></pre></div><p>如果沒有 nextTick 更新機制，那麼 num 每次更新值都會觸發視圖更新(上面這段程式碼也就是會更新10萬次視圖)，有了nextTick機制，只需要更新一次，所以nextTick本質是一種最佳化策略\</p>
+<hr>
+<p><strong>小結</strong></p>
+<ol>
+<li>把回調函數放入callbacks等待執行</li>
+<li>將執行函數放到微任務或巨集任務中</li>
+<li>事件循環到了微任務或巨集任務，執行函數依序執行callbacks中的回調</li>
+</ol>
+</blockquote>
+<hr>
+<hr>
+<hr>
+<h3 id="computed-和-watch-的差異和使用時機">Computed 和 Watch 的差異和使用時機?</h3>
+<blockquote>
+<p>computed 最大特點是必須回傳一個值，並且會把它緩存起來，當函式裏的依賴改變時，才會重新執行和求值。但 watch 與 methods 不會強制要求回傳一個值，它們只需執行動作，不一定要回傳值。watch 會偵測單一個值，當它有變化時就執行。至於 methods，只要呼叫它，它就會執行，但 computed 和 watch 則不是透過呼叫來執行。</p>
+</blockquote>
+<hr>
+<hr>
+<hr>
+<h3 id="說說你對vue的mixin的理解有什麼應用場景">說說你對vue的mixin的理解，有什麼應用場景？</h3>
+<blockquote>
+<p>Mixin是物件導向程式設計語言中的類別，提供了方法的實作。 其他類別可以存取mixin類別的方法而不必成為其子類<br>
+Mixin類別通常作為<strong>功能模組</strong>使用，在需要功能時“混入”，有利於程式碼重複使用又避免了多繼承的複雜</p>
+<hr>
+<p><strong>Vue中的mixin</strong><br>
+本質其實就是一個js對象，它可以包含我們元件中任意功能選項，如data、components、methods、created、computed等等<br>
+我們只要將共用的功能以物件的方式傳入 mixins選項中，當元件使用 mixins物件時所有mixins物件的選項都會被混入該元件本身的選項中來<br>
+在Vue中我們可以<strong>局部混入</strong>跟<strong>全域混入</strong>\</p>
+<hr>
+<p><strong>局部混入</strong><br>
+定義一個mixin對象，有元件options的data、methods屬性</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myMixin</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="nx">created</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+   <span class="k">this</span><span class="p">.</span><span class="nx">hello</span><span class="p">()</span>
+ <span class="p">},</span>
+ <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+   <span class="nx">hello</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello from mixin!&#39;</span><span class="p">)</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>元件透過mixins屬性呼叫mixin對象</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;componentA&#39;</span><span class="p">,{</span>
+ <span class="nx">mixins</span><span class="o">:</span> <span class="p">[</span><span class="nx">myMixin</span><span class="p">]</span>
+<span class="p">})</span>
+</code></pre></div><p>元件在使用的時候，混合了mixin裡面的方法，在自動執行created生命鉤子，執行hello方法</p>
+<hr>
+<p><strong>全域混入</strong><br>
+透過Vue.mixin()進行全域的混入</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">mixin</span><span class="p">({</span>
+ <span class="nx">created</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;全局混入&#34;</span><span class="p">)</span>
+   <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div><p>使用全域混入需要特別注意，因為它會影響到每一個元件實例（包括第三方元件）<br>
+PS：全域混入常用於插件的編寫</p>
+<hr>
+<p><strong>注意事項：</strong></p>
+<ul>
+<li>當元件存在與mixin物件相同的選項的時候，進行遞迴合併的時候元件的選項會覆寫mixin的選項\</li>
+<li>但如果相同選項為生命週期鉤子的時候，會合併成一個數組，先執行mixin的鉤子，再執行元件的鉤子</li>
+</ul>
+<hr>
+<p><strong>使用场景</strong><br>
+在日常的開發中，我們經常會遇到在不同的元件中經常需要用到一些<strong>相同或相似的程式碼</strong>，這些程式碼的功能相對獨立<br>
+這時，可以透過Vue的mixin功能將相同或相似的程式碼提出來<br>
+舉個例子<br>
+定義一個modal彈跳窗組件，內部透過isShowing來控制顯示\</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">Modal</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;#modal&#39;</span><span class="p">,</span>
+ <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">{</span>
+     <span class="nx">isShowing</span><span class="o">:</span> <span class="kc">false</span>
+   <span class="p">}</span>
+ <span class="p">},</span>
+ <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+   <span class="nx">toggleShow</span><span class="p">()</span> <span class="p">{</span>
+     <span class="k">this</span><span class="p">.</span><span class="nx">isShowing</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isShowing</span><span class="p">;</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>定義一個tooltip提示框，內部透過isShowing來控制顯示</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">Tooltip</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;#tooltip&#39;</span><span class="p">,</span>
+ <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">{</span>
+     <span class="nx">isShowing</span><span class="o">:</span> <span class="kc">false</span>
+   <span class="p">}</span>
+ <span class="p">},</span>
+ <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+   <span class="nx">toggleShow</span><span class="p">()</span> <span class="p">{</span>
+     <span class="k">this</span><span class="p">.</span><span class="nx">isShowing</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isShowing</span><span class="p">;</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>透過觀察上面兩個元件，發現兩者的邏輯是相同，程式碼控制顯示也是相同的，這時候mixin就派上用場了<br>
+首先抽出共同程式碼，編寫一個mixin</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">toggle</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">{</span>
+     <span class="nx">isShowing</span><span class="o">:</span> <span class="kc">false</span>
+   <span class="p">}</span>
+ <span class="p">},</span>
+ <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+   <span class="nx">toggleShow</span><span class="p">()</span> <span class="p">{</span>
+     <span class="k">this</span><span class="p">.</span><span class="nx">isShowing</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isShowing</span><span class="p">;</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>兩個元件在使用上，只需要引入mixin</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">Modal</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;#modal&#39;</span><span class="p">,</span>
+ <span class="nx">mixins</span><span class="o">:</span> <span class="p">[</span><span class="nx">toggle</span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">Tooltip</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;#tooltip&#39;</span><span class="p">,</span>
+ <span class="nx">mixins</span><span class="o">:</span> <span class="p">[</span><span class="nx">toggle</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div><p>透過上面小小的例子，讓我們知道了Mixin對於封裝一些可重複使用的功能如此有趣、方便、實用</p>
+</blockquote>
+<hr>
+<hr>
+<hr>
+<h3 id="vue30裡為什麼要用-proxy-api-取代-defineproperty-api-">Vue3.0裡為什麼要用 Proxy API 取代 defineProperty API ？</h3>
+<blockquote>
+<p><strong>Object.defineProperty</strong><br>
+定義：Object.defineProperty() 方法會直接在一個物件上定義一個新屬性，或修改一個物件的現有屬性，並傳回此對象<br>
+然而 Object.defineProperty 有以下幾點缺點</p>
+<ul>
+<li>偵測不到物件屬性的新增和刪除</li>
+<li>數組API方法無法監聽到</li>
+<li>需要對每個屬性進行遍歷監聽，如果嵌套對象，需要深層監聽，造成效能問題</li>
+</ul>
+<hr>
+<p><strong>proxy</strong><br>
+Proxy的監聽是針對一個物件的，那麼<strong>對這個物件的所有操作都會進入監聽操作</strong>，這就完全可以代理所有屬性了</p>
+<hr>
+<p><strong>總結</strong><br>
+Object.defineProperty只能遍歷物件屬性進行劫持</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">observe</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">obj</span> <span class="o">!==</span> <span class="s1">&#39;object&#39;</span> <span class="o">||</span> <span class="nx">obj</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+       <span class="k">return</span>
+   <span class="p">}</span>
+   <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">obj</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="p">=&gt;</span> <span class="p">{</span>
+       <span class="nx">defineReactive</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">])</span>
+   <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div><p>Proxy直接可以劫持整個對象，並回傳一個新對象，我們可以只操作新的對象達到響應式目的</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">reactive</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">obj</span> <span class="o">!==</span> <span class="s1">&#39;object&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">obj</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="nx">obj</span>
+   <span class="p">}</span>
+   <span class="c1">// Proxy相当于在对象外层加拦截
+</span><span class="c1"></span>   <span class="kr">const</span> <span class="nx">observed</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Proxy</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="p">{</span>
+       <span class="nx">get</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">receiver</span><span class="p">)</span> <span class="p">{</span>
+           <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">Reflect</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">receiver</span><span class="p">)</span>
+           <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`获取</span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">res</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+           <span class="k">return</span> <span class="nx">res</span>
+       <span class="p">},</span>
+       <span class="nx">set</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">receiver</span><span class="p">)</span> <span class="p">{</span>
+           <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">Reflect</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">receiver</span><span class="p">)</span>
+           <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`设置</span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+           <span class="k">return</span> <span class="nx">res</span>
+       <span class="p">},</span>
+       <span class="nx">deleteProperty</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+           <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">Reflect</span><span class="p">.</span><span class="nx">deleteProperty</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span>
+           <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`删除</span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">res</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+           <span class="k">return</span> <span class="nx">res</span>
+       <span class="p">}</span>
+   <span class="p">})</span>
+   <span class="k">return</span> <span class="nx">observed</span>
+<span class="p">}</span>
+</code></pre></div><p>Proxy可以直接監聽陣列的變化（push、shift、splice）</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="kr">const</span> <span class="nx">proxtObj</span> <span class="o">=</span> <span class="nx">reactive</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">psuh</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1">// ok
+</span></code></pre></div><p>Proxy有多達13種攔截方法,不限於apply、ownKeys、deleteProperty、has等等，這是Object.defineProperty不具備的<br>
+正因為defineProperty本身的缺陷，導致Vue2在實作響應式過程需要實作其他的方法輔助（如重寫數組方法、增加額外set、delete方法）</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 数组重写
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">originalProto</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span>
+<span class="kr">const</span> <span class="nx">arrayProto</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">originalProto</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;push&#39;</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="s1">&#39;shift&#39;</span><span class="p">,</span> <span class="s1">&#39;unshift&#39;</span><span class="p">,</span> <span class="s1">&#39;splice&#39;</span><span class="p">,</span> <span class="s1">&#39;reverse&#39;</span><span class="p">,</span> <span class="s1">&#39;sort&#39;</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">method</span> <span class="p">=&gt;</span> <span class="p">{</span>
+ <span class="nx">arrayProto</span><span class="p">[</span><span class="nx">method</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+   <span class="nx">originalProto</span><span class="p">[</span><span class="nx">method</span><span class="p">].</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">arguments</span><span class="p">)</span>
+   <span class="nx">dep</span><span class="p">.</span><span class="nx">notice</span><span class="p">()</span>
+ <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// set、delete
+</span><span class="c1"></span><span class="nx">Vue</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="s1">&#39;newbar&#39;</span><span class="p">)</span>
+<span class="nx">Vue</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">obj</span><span class="p">),</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+</code></pre></div><p>Proxy 不相容IE，也沒有 polyfill, defineProperty 能支援到IE9</p>
+</blockquote>
+<hr>
+<hr>
+<hr>
+<h3 id="vue30-所採用的-composition-api-與-vue2x-所使用的-options-api-有何不同">Vue3.0 所採用的 Composition Api 與 Vue2.x 所使用的 Options Api 有何不同？</h3>
+<blockquote>
+<p>通常使用Vue2開發的項目，普遍會出現以下問題：</p>
+<ul>
+<li>程式碼的可讀性隨著元件變大而變差</li>
+<li>每一種程式碼復用的方式，都存在缺點</li>
+<li>TypeScript支援有限</li>
+</ul>
+<p>以上透過使用Composition Api都能迎刃而解</p>
+<hr>
+<p><strong>Options Api</strong><br>
+Options API，即大家常說的選項API，即以vue為後綴的文件，透過定義methods，computed，watch，data等屬性與方法，共同處理頁面邏輯<br>
+Options程式碼編寫方式，如果是元件狀態，則寫在data屬性上，如果是方法，則寫在methods屬性上&hellip;<br>
+用組件的選項 (data、computed、methods、watch) 組織邏輯在大多數情況下都有效<br>
+然而，當組件變得複雜，導致對應屬性的清單也會成長，這可能會導致組件<strong>難以閱讀和理解</strong></p>
+<hr>
+<p><strong>Composition Api</strong><br>
+在 Vue3 Composition API 中，元件根據邏輯功能來組織的，<strong>一個功能所定義的所有 API 會放在一起（更的高內聚，低耦合）</strong><br>
+即使專案很大，功能很多，我們都能快速的定位到這個功能所用到的所有 API</p>
+<hr>
+<p><strong>mixmin 的問題</strong></p>
+<ul>
+<li>命名衝突</li>
+<li>數據來源不清晰</li>
+</ul>
+<hr>
+<p><strong>總結</strong></p>
+<ul>
+<li>在邏輯組織和邏輯復用方面，Composition API是優於Options API</li>
+<li>因為Composition API幾乎是函數，會有更好的型別推論。</li>
+<li>Composition API對 tree-shaking 友好，程式碼也更容易壓縮</li>
+<li>Composition API中見不到this的使用，減少了this指向不明的情況</li>
+<li>如果是小型元件，可以繼續使用Options API，也是十分友善的</li>
+</ul>
+</blockquote>
+<hr>
+<hr>
+<hr>
+<h2 id="參考資料">參考資料</h2>
+<p><a href="https://vue3js.cn/interview/" title="參考網站" target="_blank" rel="noopener noreffer ">參考網站</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新於 2023-12-07</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://BWModelingStudio.github.io/posts/technical_notes/4_vue_interview_exam/" data-title="面試常見問題筆記- Vue 篇" data-hashtags="技術筆記,面試"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://BWModelingStudio.github.io/posts/technical_notes/4_vue_interview_exam/" data-hashtag="技術筆記"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://BWModelingStudio.github.io/posts/technical_notes/4_vue_interview_exam/" data-title="面試常見問題筆記- Vue 篇"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://BWModelingStudio.github.io/posts/technical_notes/4_vue_interview_exam/" data-title="面試常見問題筆記- Vue 篇"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://BWModelingStudio.github.io/posts/technical_notes/4_vue_interview_exam/" data-title="面試常見問題筆記- Vue 篇"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98/">技術筆記</a>,&nbsp;<a href="/tags/%E9%9D%A2%E8%A9%A6/">面試</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主頁</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/technical_notes/3_javascript_interview_exam/" class="prev" rel="prev" title="面試常見問題筆記-Javascript 篇"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>面試常見問題筆記-Javascript 篇</a>
+            <a href="/posts/technical_notes/2_set_executionpolicy_problem/" class="next" rel="next" title="解決 Windows 上輸入指令出現「因為這個系統上已停用指令碼執行，所以無法載入...」的問題">解決 Windows 上輸入指令出現「因為這個系統上已停用指令碼執行，所以無法載入...」的問題<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.2">Hugo</a> 強力驅動 | 主題 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">黑白大神</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到頂部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看評論">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"複製到剪貼板","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-tw","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"沒有找到結果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
