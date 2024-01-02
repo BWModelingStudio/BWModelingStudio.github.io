@@ -38,6 +38,14 @@
     <description><![CDATA[前言 以前從後端轉到前端的時候，那時候我的主管跟我說你們前端要有被害妄想症，要去想我們會怎樣被攻擊以及去防範，因為前端基本上都是&hellip]]></description>
 </item>
 <item>
+    <title>VS Code 一些常用快捷鍵筆記</title>
+    <link>http://BWModelingStudio.github.io/posts/technical_notes/6_vscode_hotkey/</link>
+    <pubDate>Sat, 11 Feb 2023 12:40:00 &#43;0800</pubDate>
+    <author>黑白大神</author>
+    <guid>http://BWModelingStudio.github.io/posts/technical_notes/6_vscode_hotkey/</guid>
+    <description><![CDATA[前言 VS Code 其實有很多超級實用的快捷鍵，如果熟悉起來的話對開發上會相當有幫助，無奈有時候我很容易忘記，所以這裡做個統整方便我日後回來查找，也順便]]></description>
+</item>
+<item>
     <title>蒙提霍爾問題-反直覺的博弈問題</title>
     <link>http://BWModelingStudio.github.io/posts/trivia/1_monty_hall_problem/</link>
     <pubDate>Tue, 07 Feb 2023 15:40:00 &#43;0800</pubDate>
